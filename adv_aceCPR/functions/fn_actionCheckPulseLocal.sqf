@@ -20,7 +20,7 @@ params ["_caller", "_unit", "_selectionName"];
 
 private _heartRate = _unit getVariable ["ace_medical_heartRate", 80];
 //EDITED BY BELBO:
-private _inRevive = _unit getVariable ["ace_medical_inReviveState",false];
+private _inRevive = _unit call adv_aceCPR_fnc_inReviveState;
 if (!alive _unit || _inRevive) then {
 //END OF EDIT
     _heartRate = 0;
@@ -29,7 +29,7 @@ private _heartRateOutput = localize "STR_ACE_Medical_Check_Pulse_Output_5";
 private _logOutPut = localize "STR_ACE_Medical_Check_Pulse_None";
 
 if (_heartRate > 1.0) then {
-    if ([_caller] call ace_medical_fnc_isMedic) then {
+    if ([_caller] call ace_medical_treatment_fnc_isMedic) then {
         _heartRateOutput = localize "STR_ACE_Medical_Check_Pulse_Output_1";
         _logOutPut = format["%1",round(_heartRate)];
     } else {
@@ -48,7 +48,7 @@ if (_heartRate > 1.0) then {
     };
 };
 
-if (_selectionName in ["hand_l","hand_r"] && {[_unit, _selectionName] call ace_medical_fnc_hasTourniquetAppliedTo}) then {
+if (_selectionName in ["hand_l","hand_r"] && {[_unit, _selectionName] call ace_medical_treatment_fnc_hasTourniquetAppliedTo}) then {
     _heartRateOutput = localize "STR_ACE_Medical_Check_Pulse_Output_5";
     _logOutPut = localize "STR_ACE_Medical_Check_Pulse_None";
 };
@@ -64,6 +64,6 @@ if (_inRevive) then {
 //END OF EDIT
 
 if (_logOutPut != "") then {
-    [_unit,"activity", "STR_ACE_Medical_Check_Pulse_Log",[[_caller] call ace_common_fnc_getName,_logOutPut]] call ace_medical_fnc_addToLog;
-    [_unit,"quick_view", "STR_ACE_Medical_Check_Pulse_Log",[[_caller] call ace_common_fnc_getName,_logOutPut]] call ace_medical_fnc_addToLog;
+    [_unit,"activity", "STR_ACE_Medical_Check_Pulse_Log",[[_caller] call ace_common_fnc_getName,_logOutPut]] call ace_medical_treatment_fnc_addToLog;
+    [_unit,"quick_view", "STR_ACE_Medical_Check_Pulse_Log",[[_caller] call ace_common_fnc_getName,_logOutPut]] call ace_medical_treatment_fnc_addToLog;
 };

@@ -67,19 +67,23 @@ class CfgFunctions {
 			class probability {};
 			class registerSettings {};
 			class useAEDStation {};
+
+			class giveHeartRate {};
+			class getMedications {};
+			class inReviveState {};
 		};
 	};
-	class adv_aceCPR_ace_medical
+	/* class adv_aceCPR_ace_medical
 	{
-		tag = "ace_medical";
+		tag = "ace_medical_treatment";
 		class ace_medical
 		{
-			class actionCheckPulseLocal
+			class checkPulseLocal
 			{
 				file = "adv_aceCPR\functions\fn_actionCheckPulseLocal.sqf";
 			};
 		};
-	};	
+	}; */	
 };
 
 class Extended_PreInit_EventHandlers {
@@ -154,21 +158,21 @@ class cfgVehicles {
 	*/
 	
 	//ace_medical_actions:
-	class Man;
+	/*class Man;
 	class CAManBase: Man {
 		class ACE_Actions {
 			class ACE_Torso {
 				class CPR;
 				class adv_aceCPR_AED: CPR {
 					displayName = "$STR_ADV_ACECPR_AED_ACTION";
-					condition = "[_player, _target, 'body', 'Defibrillator'] call ace_medical_fnc_canTreatCached && (missionNamespace getVariable ['adv_aceCPR_enable',true])";
-					statement = "[_player, _target, 'body', 'Defibrillator'] call ace_medical_fnc_treatment";
+					condition = "[_player, _target, 'body', 'Defibrillator'] call ace_medical_treatment_fnc_canTreatCached && (missionNamespace getVariable ['adv_aceCPR_enable',true])";
+					statement = "[_player, _target, 'body', 'Defibrillator'] call ace_medical_treatment_fnc_treatment";
 					exceptions[] = {""};
 					icon = "\adv_aceCPR\ui\defib_action.paa";
 				};
 				class adv_aceCPR_AED_station: adv_aceCPR_AED {
-					condition = "[_player, _target, 'body', 'Defibrillator_station'] call ace_medical_fnc_canTreatCached && (missionNamespace getVariable ['adv_aceCPR_enable',true])";
-					statement = "[_player, _target, 'body', 'Defibrillator_station'] call ace_medical_fnc_treatment";
+					condition = "[_player, _target, 'body', 'Defibrillator_station'] call ace_medical_treatment_fnc_canTreatCached && (missionNamespace getVariable ['adv_aceCPR_enable',true])";
+					statement = "[_player, _target, 'body', 'Defibrillator_station'] call ace_medical_treatment_fnc_treatment";
 				};
 			};
 			class ACE_MainActions {
@@ -177,20 +181,20 @@ class cfgVehicles {
 						class CPR;
 						class adv_aceCPR_AED: CPR {
 							displayName = "$STR_ADV_ACECPR_AED_ACTION";
-							condition = "[_player, _target, 'body', 'Defibrillator'] call ace_medical_fnc_canTreatCached && (missionNamespace getVariable ['adv_aceCPR_enable',true])";
-							statement = "[_player, _target, 'body', 'Defibrillator'] call ace_medical_fnc_treatment";
+							condition = "[_player, _target, 'body', 'Defibrillator'] call ace_medical_treatment_fnc_canTreatCached && (missionNamespace getVariable ['adv_aceCPR_enable',true])";
+							statement = "[_player, _target, 'body', 'Defibrillator'] call ace_medical_treatment_fnc_treatment";
 							exceptions[] = {"isNotInside"};
 							icon = "\adv_aceCPR\ui\defib_action.paa";
 						};
 						class adv_aceCPR_AED_station: adv_aceCPR_AED {
-							condition = "[_player, _target, 'body', 'Defibrillator_station'] call ace_medical_fnc_canTreatCached && (missionNamespace getVariable ['adv_aceCPR_enable',true])";
-							statement = "[_player, _target, 'body', 'Defibrillator_station'] call ace_medical_fnc_treatment";
+							condition = "[_player, _target, 'body', 'Defibrillator_station'] call ace_medical_treatment_fnc_canTreatCached && (missionNamespace getVariable ['adv_aceCPR_enable',true])";
+							statement = "[_player, _target, 'body', 'Defibrillator_station'] call ace_medical_treatment_fnc_treatment";
 						};
 					};
 				};
 			};
 		};
-	};
+	};*/
 
 	class Items_base_F;
 	class Land_Defibrillator_F: Items_base_F {
@@ -213,34 +217,33 @@ class cfgVehicles {
 	};
 };
 
-class ACE_Medical_Actions {
-	class Advanced {
-		class fieldDressing;
-		class CPR: fieldDressing {
-			callbackSuccess = "adv_aceCPR_fnc_CPR_action";
-			animationCaller = "AinvPknlMstpSnonWnonDr_medic0";
-			animationPatientUnconscious = "AinjPpneMstpSnonWrflDnon_rolltoback";
-			animationPatientUnconsciousExcludeOn[] = {"ainjppnemstpsnonwrfldnon"};
-		};
-		class Defibrillator: CPR {
-            displayName = "$STR_ADV_ACECPR_AED_DISPLAYNAME";
-			displayNameProgress = "$STR_ADV_ACECPR_AED_PROGRESS";
-			items[] = {"adv_aceCPR_AED"};
-			condition = "!([_target] call ace_common_fnc_isAwake) && missionNamespace getVariable ['adv_aceCPR_enable',true]";
-			treatmentTime = 8;
-			requiredMedic = 1;
-			callbackSuccess = "adv_aceCPR_fnc_AED_action";
-			callbackProgress = "adv_aceCPR_fnc_AED_sound";
-			animationCaller = "AinvPknlMstpSnonWnonDnon_medic3";
-			treatmentLocations[] = {"adv_aceCPR_useLocation_AED"};
-		};
-		class Defibrillator_station: Defibrillator {
-			items[] = {};
-			condition = "[_player,_target] call adv_aceCPR_fnc_AED_station_condition";
-			callbackSuccess = "adv_aceCPR_fnc_AED_station";
-			callbackProgress = "";
-			animationCaller = "AinvPknlMstpSnonWnonDnon_medic3";
-			treatmentLocations[] = {"All"};
-		};
+class ACE_Medical_Treatment_Actions {
+	class fieldDressing;
+	class CPR: fieldDressing {
+		callbackSuccess = "adv_aceCPR_fnc_CPR_action";
+		animationCaller = "AinvPknlMstpSnonWnonDr_medic0";
+		animationPatientUnconscious = "AinjPpneMstpSnonWrflDnon_rolltoback";
+		animationPatientUnconsciousExcludeOn[] = {"ainjppnemstpsnonwrfldnon"};
+	};
+	class Defibrillator: CPR {
+		displayName = "$STR_ADV_ACECPR_AED_ACTION";
+		displayNameProgress = "$STR_ADV_ACECPR_AED_PROGRESS";
+		icon = "\adv_aceCPR\ui\defib_action.paa";
+		items[] = {"adv_aceCPR_AED"};
+		condition = "!([_patient] call ace_common_fnc_isAwake) && missionNamespace getVariable ['adv_aceCPR_enable', true]";
+		treatmentTime = 8;
+		requiredMedic = 1;
+		callbackSuccess = "adv_aceCPR_fnc_AED_action";
+		callbackProgress = "adv_aceCPR_fnc_AED_sound";
+		animationCaller = "AinvPknlMstpSnonWnonDnon_medic3";
+		treatmentLocations[] = {"adv_aceCPR_useLocation_AED"};
+	};
+	class Defibrillator_station: Defibrillator {
+		items[] = {};
+		condition = "[_medic, _patient] call adv_aceCPR_fnc_AED_station_condition";
+		callbackSuccess = "adv_aceCPR_fnc_AED_station";
+		callbackProgress = "";
+		animationCaller = "AinvPknlMstpSnonWnonDnon_medic3";
+		treatmentLocations[] = {"All"};
 	};
 };

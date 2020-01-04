@@ -22,7 +22,7 @@ adv_aceCPR_aed_stationAction = [
 	},
 	{
 		params ["_target","_caller"];
-		missionNamespace getVariable ['adv_aceCPR_enable',true] && {!(_caller getVariable ['adv_aceCPR_usedAEDStation',false]) && (_caller getVariable ['ace_medical_medicClass',0]) > 0}
+		missionNamespace getVariable ['adv_aceCPR_enable',true] && {!(_caller getVariable ['adv_aceCPR_usedAEDStation',false]) && (_caller call ace_common_fnc_isMedic)}
 	},
 	nil,[],[0,0,0]
 ] call ace_interact_menu_fnc_createAction;

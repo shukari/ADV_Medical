@@ -8,7 +8,7 @@ ADV-aceCPR - by Belbo
 //evh for the addition of revive time:
 ["adv_aceCPR_evh_addTime", { _this call adv_aceCPR_fnc_addTime }] call CBA_fnc_addEventHandler;
 //evh for showing the pulse after AED:
-["adv_aceCPR_evh_showPulse", { _this call ace_medical_fnc_actionCheckPulse }] call CBA_fnc_addEventHandler;
+["adv_aceCPR_evh_showPulse", { (_this + ["Head"]) call ace_medical_treatment_fnc_checkPulse }] call CBA_fnc_addEventHandler;
 //evh for the AED:
 ["adv_aceCPR_evh_AED_local", { _this call adv_aceCPR_fnc_AED_local }] call CBA_fnc_addEventHandler;
 

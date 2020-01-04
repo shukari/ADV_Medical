@@ -11,7 +11,7 @@ params [
 ];
 
 private _inCardiac = _target getVariable ["ace_medical_inCardiacArrest",false];
-private _inRevive = _target getVariable ["ace_medical_inReviveState",false];
+private _inRevive = _target call adv_aceCPR_fnc_inReviveState;
 
 //pain will be added to all units standing too close to caller or target.
 if (vehicle _target isEqualTo _target) then {
@@ -51,8 +51,8 @@ if ( _inCardiac || _inRevive ) exitWith {
 };
 
 //log the AED usage to the treatment log:
-[_target, "activity", localize "STR_ADV_ACECPR_AED_EXECUTE", [[_caller, false, true] call ace_common_fnc_getName]] call ace_medical_fnc_addToLog;
-[_target, "activity_view", localize "STR_ADV_ACECPR_AED_EXECUTE", [[_caller, false, true] call ace_common_fnc_getName]] call ace_medical_fnc_addToLog;
+[_target, "activity", localize "STR_ADV_ACECPR_AED_EXECUTE", [[_caller, false, true] call ace_common_fnc_getName]] call ace_medical_treatment_fnc_addToLog;
+[_target, "activity_view", localize "STR_ADV_ACECPR_AED_EXECUTE", [[_caller, false, true] call ace_common_fnc_getName]] call ace_medical_treatment_fnc_addToLog;
 
 //return:
 false;

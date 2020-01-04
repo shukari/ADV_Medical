@@ -6,8 +6,6 @@ params ["_caller", "_target"];
 
 //standard variables:
 private _inCardiac = _target getVariable ["ace_medical_inCardiacArrest",false];
-private _inRevive = _target getVariable ["ace_medical_inReviveState",false];
-private _reviveEnabled = missionNamespace getVariable ["ace_medical_enableRevive",0];
 
 //backwards compatibility:
 private _probabilities = missionNamespace getVariable ["adv_aceCPR_probabilities", [40,15,5,85]];
@@ -27,13 +25,13 @@ private _diceRoll = 1+floor(random 100);
 [_target, 0.4] call ace_medical_fnc_adjustPainLevel;
 
 if ( _probability >= _diceRoll ) exitWith {
+	/*
 	//resetting the values of the target:
 	//_target setVariable ["ace_medical_inReviveState",false,true];
 	//_target setVariable ["ace_medical_inCardiacArrest",false,true];
-	_target setVariable ["ace_medical_inReviveState",nil,true];
+	 _target setVariable ["ace_medical_inReviveState",nil,true];
 	_target setVariable ["ace_medical_inCardiacArrest",nil,true];
 	
-	//if ( _reviveEnabled > 0 ) then {
 	//sets the heartrate higher than CPR:
 	_target setVariable ["ace_medical_heartRate",40, true];
 	
@@ -42,11 +40,13 @@ if ( _probability >= _diceRoll ) exitWith {
 	if (_target getVariable "ace_medical_bloodVolume" < _threshold) then {
 		_target setVariable ["ace_medical_bloodVolume",_threshold, true];
 	};
-	//};
+	*/
+
+	[_target] call adv_aceCPR_fnc_giveHeartRate;
 	
 	//log the custom cpr success to the treatment log:
-	[_target, "activity", localize "STR_ADV_ACECPR_AED_COMPLETED", [[_caller, false, true] call ace_common_fnc_getName]] call ace_medical_fnc_addToLog;
-	[_target, "activity_view", localize "STR_ADV_ACECPR_AED_COMPLETED", [[_caller, false, true] call ace_common_fnc_getName]] call ace_medical_fnc_addToLog;
+	[_target, "activity", localize "STR_ADV_ACECPR_AED_COMPLETED", [[_caller, false, true] call ace_common_fnc_getName]] call ace_medical_treatment_fnc_addToLog;
+	[_target, "activity_view", localize "STR_ADV_ACECPR_AED_COMPLETED", [[_caller, false, true] call ace_common_fnc_getName]] call ace_medical_treatment_fnc_addToLog;
 
 	//diagnostics:
 	[_caller,"patient has been succesfully stabilized"] call adv_aceCPR_fnc_diag;
@@ -71,7 +71,7 @@ if (!local _caller) then {
 [_caller,"patient has not been stabilized"] call adv_aceCPR_fnc_diag;
 
 //log the AED usage to the treatment log:
-[_target, "activity", localize "STR_ADV_ACECPR_AED_EXECUTE", [[_caller, false, true] call ace_common_fnc_getName]] call ace_medical_fnc_addToLog;
-[_target, "activity_view", localize "STR_ADV_ACECPR_AED_EXECUTE", [[_caller, false, true] call ace_common_fnc_getName]] call ace_medical_fnc_addToLog;
+[_target, "activity", localize "STR_ADV_ACECPR_AED_EXECUTE", [[_caller, false, true] call ace_common_fnc_getName]] call ace_medical_treatment_fnc_addToLog;
+[_target, "activity_view", localize "STR_ADV_ACECPR_AED_EXECUTE", [[_caller, false, true] call ace_common_fnc_getName]] call ace_medical_treatment_fnc_addToLog;
 
 false;
