@@ -19,7 +19,6 @@ if (!isNil "_reviveStartTime") then {
 
 _return = _target getVariable "ace_medical_statemachine_cardiacArrestTimeLeft";
 
-systemChat format ["Added time: %4 + rand = %1 - new time: %3 + %1 = %2", _timeAdded - _reviveStartTime, _return, _reviveStartTime, _addTimeSetting];
 //diagnostics:
 [_target,format ["added time was %1. New reviveStartTime was %2, with a difference to cba_missiontime of %3 seconds.",_timeAdded-_reviveStartTime, _return, (CBA_missionTime - _return)]] call adv_aceCPR_fnc_diag;
 

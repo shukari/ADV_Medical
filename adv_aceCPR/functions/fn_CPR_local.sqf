@@ -7,6 +7,7 @@ params ["_caller", "_target"];
 //standard variables:
 private _inCardiac = _target getVariable ["ace_medical_inCardiacArrest",false];
 private _inRevive = _target call adv_aceCPR_fnc_inReviveState;
+_target setVariable ["ace_medical_CPR_provider", objNull, true];
 
 //add time if in revive:
 if ( _inRevive  || _inCardiac ) then {
