@@ -6,24 +6,13 @@ params [
 	["_target", objNull, [objNull]]
 ];
 
-/*
-TODO - Fix
-private _maxRevTime = missionNamespace getVariable ["ace_medical_maxReviveTime",900];
 private _inRevive = _target call adv_aceCPR_fnc_inReviveState;
 private _inCardiac = _target getVariable ["ace_medical_inCardiacArrest",false];
-private _cprMaxTime = missionNamespace getVariable ["adv_aceCPR_maxTime",900];
 
-//return:
-if ( alive _target && (_inRevive || _inCardiac) ) exitWith {
-	if ( !_inRevive && _inCardiac ) exitWith {
-		true
-	};
-	private _startTime = _target getVariable ["ace_medical_reviveStartTime",0];
-	private _timeLeft = _startTime + ( _maxRevTime min _cprMaxTime );
-	
-	if ( CBA_missionTime > _timeLeft ) exitWith { false };
-	true
-};
-*/
+if !(alive _target && (_inRevive || _inCardiac)) exitWith { true };
+if (!_inRevive && _inCardiac) exitWith { true };
 
-true
+private _startTime = _target getVariable ["adv_aceCPR_cardiacArrestStart", CBA_missionTime];
+private _cprMaxTime = missionNamespace getVariable ["adv_aceCPR_maxTime", 900];
+
+CBA_missionTime < _startTime + _cprMaxTime

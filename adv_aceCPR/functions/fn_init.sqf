@@ -12,6 +12,15 @@ ADV-aceCPR - by Belbo
 //evh for the AED:
 ["adv_aceCPR_evh_AED_local", { _this call adv_aceCPR_fnc_AED_local }] call CBA_fnc_addEventHandler;
 
+["ace_cardiacArrest", {
+	params ["_unit", "_active"];
+
+	if (_active) then {
+		_unit setVariable ["adv_aceCPR_cardiacArrestStart", CBA_missionTime, true];
+	};
+}] call CBA_fnc_addEventHandler;
+
+
 //for diagnostic purposes only:
 ["adv_aceCPR_evh_log", { diag_Log (format ["%1",_this]) }] call CBA_fnc_addEventHandler;
 

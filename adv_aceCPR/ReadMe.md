@@ -3,6 +3,8 @@
 This is an updated version of [ADV ACE-CPR][ADV], made compatible with the ACE medical rewrite (v1.13.0). The functionality of
 certain aspects of this mod have changed slightly from pre-medical rewrite editions, as detailed below.
 
+Mod can be downloaded here: https://steamcommunity.com/sharedfiles/filedetails/?id=1957746437
+
 ## Overview:
 
 Giving you a second chance if your everyday CPR doesn't do squat. With ADV - ACE CPR you can finally use ACE CPR to get someone
@@ -33,7 +35,6 @@ meters. After 12 seconds the stationary AED will deactivate again.
 * In the original mod, the patient would gain a heart rate of 40bpm from the defibrillator. In this version, the patient's heart
   rate will jump to 120-140bpm instead.
 * The check pulse action override provided by this mod is not active. This may change in the future.
-* The `adv_aceCPR_maxTime` currently does nothing. This will change in the future.
 
 ## For mission builders:
 
