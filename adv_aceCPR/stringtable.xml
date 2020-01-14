@@ -297,5 +297,14 @@
 			<Spanish>La batería de tu DAE está agotada</Spanish>
 			<Japanese>AEDのバッテリーが切れました。</Japanese>
 		</Key>
+		
+		<Key ID="STR_ADV_ACECPR_MedicAED">
+			<Original>Allow AED</Original>
+			<English>Allow AED</English>
+		</Key>
+		<Key ID="STR_ADV_ACECPR_MedicAED_Description">
+			<Original>Training level required to use an AED.</Original>
+			<English>Training level required to use an AED.</English>
+		</Key>
 	</Package>
 </Project>

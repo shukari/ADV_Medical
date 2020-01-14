@@ -35,7 +35,9 @@ meters. After 12 seconds the stationary AED will deactivate again.
 * In the original mod, the patient would gain a heart rate of 40bpm from the defibrillator. In this version, the patient's heart
   rate will jump to 120-140bpm instead.
 * The check pulse action override provided by this mod is not active. This may change in the future.
-
+* The `adv_aceCPR_onlyDoctors` setting can now restrict AED usage to any ace medic class. This can be adjusted in the CBA
+  settings. Title and description for this setting lack translations.
+  
 ## For mission builders:
 
 You can set the probabilities for successful resuscitation individually depending on the value for ace_medical_medicClass a

@@ -8,13 +8,6 @@ params ["_caller", "_target"];
 private _medicLevel = _caller getVariable ["ace_medical_medicClass", getNumber (configFile >> "CfgVehicles" >> typeOf _caller >> "attendant")];
 private _probabilities = missionNamespace getVariable ["adv_aceCPR_probabilities", [40,15,5,85]];
 
-//backwards compatibility:
-private _onlyDoctors = missionNamespace getVariable ["adv_aceCPR_onlyDoctors", 0];
-if ( _onlyDoctors isEqualType true ) then {
-	_onlyDoctors = if (_onlyDoctors) then {2} else {0};
-};
-if ( (_onlyDoctors isEqualTo 2 && _medicLevel < 2) || (_onlyDoctors > 0 && _medicLevel < 1)) exitWith {0};
-
 //probability depends on medicClass of _caller:
 private _probability = call {
 	if ( _medicLevel isEqualTo 2 ) exitWith { _probabilities select 0 };

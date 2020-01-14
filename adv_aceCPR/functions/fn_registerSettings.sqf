@@ -113,16 +113,15 @@ missionNamespace setVariable ["adv_aceCPR_AED_stationType",nil];
 	,true
 ] call CBA_Settings_fnc_init;
 
-/*
+
 //Disable for certain classes
 [
-	"adv_aceCPR_onlyDoctors"
-	,"LIST"
-	,localize "STR_ADV_ACECPR_SETTING_DISABLE"
-	,CBA_SETTINGS_CAT
-	,[[0,1,2],["STR_ADV_ACECPR_SETTING_DISABLE_NONE","STR_ADV_ACECPR_SETTING_DISABLE_SOLDIERS","STR_ADV_ACECPR_SETTING_DISABLE_MEDICS"],0]
-	,true
+	"adv_aceCPR_onlyDoctors",
+	"LIST",
+	[localize "STR_ADV_ACECPR_MedicAED", localize "STR_ADV_ACECPR_MedicAED_Description"],
+	CBA_SETTINGS_CAT,
+	[[0,1,2],["STR_ACE_Medical_Treatment_Anyone","STR_ACE_Medical_Treatment_Medics","STR_ACE_Medical_Treatment_Doctors"],0],
+	true
 ] call CBA_Settings_fnc_init;
-*/
 
 nil

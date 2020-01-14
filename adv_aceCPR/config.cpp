@@ -14,7 +14,7 @@
 			"ace_medical"
 			,"cba_settings"
 		};
-		version = "2.0.0";
+		version = "2.1.0";
 		versionStr = "2.0.0";
 		author = "[SeL] Belbo // Adrian";
 		authorUrl = "http://spezialeinheit-luchs.de/";
@@ -51,6 +51,7 @@ class CfgFunctions {
 			file = "adv_aceCPR\functions";
 			class addTime {};
 			class AED_action {};
+			class AED_condition {};
 			//class AED_countUses {};
 			class AED_local {};
 			class AED_sound {};
@@ -193,9 +194,8 @@ class ACE_Medical_Treatment_Actions {
 		displayNameProgress = "$STR_ADV_ACECPR_AED_PROGRESS";
 		icon = "\adv_aceCPR\ui\defib_action.paa";
 		items[] = {"adv_aceCPR_AED"};
-		condition = "!([_patient] call ace_common_fnc_isAwake) && missionNamespace getVariable ['adv_aceCPR_enable', true]";
+		condition = "[_medic, _patient] call adv_aceCPR_fnc_AED_condition";
 		treatmentTime = 8;
-		requiredMedic = 1;
 		callbackSuccess = "adv_aceCPR_fnc_AED_action";
 		callbackStart = "adv_aceCPR_fnc_AED_sound";
 		callbackFailure = "adv_aceCPR_fnc_AED_cancelled";
