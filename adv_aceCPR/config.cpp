@@ -201,7 +201,7 @@ class ACE_Medical_Treatment_Actions {
 		callbackFailure = "adv_aceCPR_fnc_AED_cancelled";
 		callbackProgress = "adv_aceCPR_fnc_AED_progress";
 		animationCaller = "AinvPknlMstpSnonWnonDnon_medic3";
-		treatmentLocations[] = {"adv_aceCPR_useLocation_AED"};
+		treatmentLocations = "adv_aceCPR_useLocation_AED";
 	};
 	class Defibrillator_station: Defibrillator {
 		items[] = {};
@@ -210,6 +210,6 @@ class ACE_Medical_Treatment_Actions {
 		callbackProgress = "";
 		callbackFailure = "";
 		animationCaller = "AinvPknlMstpSnonWnonDnon_medic3";
-		treatmentLocations[] = {"All"};
+		treatmentLocations = 0;
 	};
 };
