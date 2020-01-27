@@ -20,6 +20,6 @@ _caller setVariable ["adv_aceCPR_var_soundHandle", (_this select 0) spawn {
 		,"_items"
 	];
 	sleep 5.4;
-	playsound3d ["adv_aceCPR\ui\defib.ogg", _caller,false,getPosASL _caller,8,1,15];
+	playsound3d ["adv_aceCPR\ui\defib.ogg", _caller, false, getPosASL _caller, 5, 1, 15];
 	_caller setVariable ["adv_aceCPR_var_soundHandle", nil];
 }];

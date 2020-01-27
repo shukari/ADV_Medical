@@ -6,7 +6,7 @@
 
 	Parameters:
 	_caller: OBJECT - The medic attempting to use the AED
-	_target: OBJECT - The patient on who the AED is being used
+	_target: OBJECT - The patient on whom the AED is being used
 
 	Returns:
 	BOOL - True if the AED is currently usable, false otherwise
