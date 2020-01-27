@@ -1,7 +1,7 @@
 The only changes made by this repository are with regards to ADV ACE-CPR. The other mods included here are unchanged from the
 [upstream repository][ADV].
 
-# ACE ADV - CPR
+# ADV ACE - CPR
 
 This is an updated version of [ADV ACE-CPR][ADV], made compatible with the ACE medical rewrite (v1.13.0). The functionality of
 certain aspects of this mod have changed slightly from pre-medical rewrite editions, as detailed below.
