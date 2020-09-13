@@ -20,6 +20,30 @@ ADV-aceCPR - by Belbo
 	};
 }] call CBA_fnc_addEventHandler;
 
+/*
+if (isServer) then {
+	missionNamespace setVariable ["adv_aceCPR_hostVersion", getText (configFile >> "CfgPatches" >> "adv_aceCPR" >> "versionStr"), true];
+	missionNamespace setVariable ["adv_aceCPR_isDedicated", isDedicated, true];
+
+	{
+		private _localVersion = getText (configFile >> "CfgPatches" >> "adv_aceCPR" >> "versionStr");
+		private _hostVersion = missionNamespace getVariable ["adv_aceCPR_hostVersion", ""];
+
+		if !(_localVersion isEqualTo _hostVersion) then {
+			private warningStr = format ["Warning - adv_aceCPR version mismatch: player '%1' uses v%2, while host uses v%3",
+				name player,
+				_localVersion,
+				_hostVersion
+			];
+			
+			diag_log _warningStr;
+
+			_warningStr remoteExec ["systemChat", [0,-2] select (missionNamespace getVariable ["adv_aceCPR_isDedicated", false])];
+			_warningStr remoteExec ["diag_log", 2];
+		};
+	} remoteExec ["call", -2, true];
+}
+*/
 
 //for diagnostic purposes only:
 ["adv_aceCPR_evh_log", { diag_Log (format ["%1",_this]) }] call CBA_fnc_addEventHandler;

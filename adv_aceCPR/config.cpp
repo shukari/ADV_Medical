@@ -14,8 +14,8 @@
 			"ace_medical"
 			,"cba_settings"
 		};
-		version = "2.1.2";
-		versionStr = "2.1.2";
+		version = "2.1.3";
+		versionStr = "2.1.3";
 		author = "[SeL] Belbo // Adrian";
 		authorUrl = "http://spezialeinheit-luchs.de/";
     };
@@ -52,7 +52,6 @@ class CfgFunctions {
 			class addTime {};
 			class AED_action {};
 			class AED_condition {};
-			//class AED_countUses {};
 			class AED_local {};
 			class AED_sound {};
 			class AED_cancelled {};
@@ -76,17 +75,6 @@ class CfgFunctions {
 			class inReviveState {};
 		};
 	};
-	/* class adv_aceCPR_ace_medical
-	{
-		tag = "ace_medical_treatment";
-		class ace_medical
-		{
-			class checkPulseLocal
-			{
-				file = "adv_aceCPR\functions\fn_actionCheckPulseLocal.sqf";
-			};
-		};
-	}; */	
 };
 
 class Extended_PreInit_EventHandlers {
@@ -185,7 +173,7 @@ class ACE_Medical_Treatment_Actions {
 	class fieldDressing;
 	class CPR: fieldDressing {
 		callbackSuccess = "adv_aceCPR_fnc_CPR_action";
-		animationCaller = "AinvPknlMstpSnonWnonDr_medic0";
+		animationMedic = "AinvPknlMstpSnonWnonDr_medic0";
 		animationPatientUnconscious = "AinjPpneMstpSnonWrflDnon_rolltoback";
 		animationPatientUnconsciousExcludeOn[] = {"ainjppnemstpsnonwrfldnon"};
 	};
@@ -200,7 +188,7 @@ class ACE_Medical_Treatment_Actions {
 		callbackStart = "adv_aceCPR_fnc_AED_sound";
 		callbackFailure = "adv_aceCPR_fnc_AED_cancelled";
 		callbackProgress = "adv_aceCPR_fnc_AED_progress";
-		animationCaller = "AinvPknlMstpSnonWnonDnon_medic3";
+		animationMedic = "AinvPknlMstpSnonWnonDnon_medic3";
 		treatmentLocations = "adv_aceCPR_useLocation_AED";
 	};
 	class Defibrillator_station: Defibrillator {
@@ -209,7 +197,7 @@ class ACE_Medical_Treatment_Actions {
 		callbackSuccess = "adv_aceCPR_fnc_AED_station";
 		callbackProgress = "";
 		callbackFailure = "";
-		animationCaller = "AinvPknlMstpSnonWnonDnon_medic3";
+		animationMedic = "AinvPknlMstpSnonWnonDnon_medic3";
 		treatmentLocations = 0;
 	};
 };
