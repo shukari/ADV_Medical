@@ -1,7 +1,7 @@
 /*
 ADV_aceCPR_fnc_canCPR - by Belbo
 
-Determines if CPR is 
+Determines if CPR has the ability to be successful
 */
 
 
@@ -13,10 +13,10 @@ private _inRevive = _target call adv_aceCPR_fnc_inReviveState;
 private _inCardiac = _target getVariable ["ace_medical_inCardiacArrest",false];
 
 //rewritten to make the use cases easily distinguishable
-//Dead (kept to keep same functionality as old code. was this intentional?)
-if (!alive _target) exitWith { true };
+//Dead 
+if (!alive _target) exitWith { false };
 
-//Alive and unconscious but not in cardiac (no cardiac reference as the states are mutually exclusive)
+//Alive and unconscious but not in cardiac (cardiac and unconscious are mutually exclusive)
 if (alive _target && _inRevive) exitWith { true };
 
 //In cardiac 
@@ -28,6 +28,5 @@ if (_inCardiac) exitWith {
 };
 
 // if awake
-false
-//end rewrite
+true
 
