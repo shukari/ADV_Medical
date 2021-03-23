@@ -28,8 +28,11 @@ if ( _enable ) exitWith {
 	true;
 };
 
+//Calls normal ace function for a completed round of CPR 
+[_caller, _target] call ace_medical_treatment_fnc_cprSuccess;
+
 //diagnostics:
-[_target, "CPR action is not being executed"] call adv_aceCPR_fnc_diag;
+[_target, "Custom CPR action is not being executed"] call adv_aceCPR_fnc_diag;
 
 //return:
 false;
