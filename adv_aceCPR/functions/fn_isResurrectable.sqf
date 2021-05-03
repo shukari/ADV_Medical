@@ -9,15 +9,11 @@ params [
 	["_target", objNull, [objNull]]
 ];
 
-private _inRevive = _target call adv_aceCPR_fnc_inReviveState;
 private _inCardiac = _target getVariable ["ace_medical_inCardiacArrest",false];
 
 //rewritten to make the use cases easily distinguishable
 //Dead 
 if (!alive _target) exitWith { false };
-
-//Alive and unconscious but not in cardiac (cardiac and unconscious are mutually exclusive)
-if (alive _target && _inRevive) exitWith { true };
 
 //In cardiac 
 if (_inCardiac) exitWith {
@@ -27,6 +23,6 @@ if (_inCardiac) exitWith {
 	CBA_missionTime < _startTime + _cprMaxTime;
 };
 
-// if awake
+// Awake or unconscious with heartrate
 true
 
