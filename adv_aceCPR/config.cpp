@@ -167,8 +167,8 @@ class cfgVehicles {
 };
 
 class ACE_Medical_Treatment_Actions {
-	class fieldDressing;
-	class CPR: fieldDressing {
+	class BasicBandage;
+	class CPR: BasicBandage {
 		callbackSuccess = "adv_aceCPR_fnc_CPR_action";
 		animationMedic = "AinvPknlMstpSnonWnonDr_medic0";
 		animationPatientUnconscious = "AinjPpneMstpSnonWrflDnon_rolltoback";
